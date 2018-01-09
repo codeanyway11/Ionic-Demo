@@ -19,10 +19,10 @@ export class MyApp {
   pages: PageInterface[] = [];
 
   constructor(
-      public platform: Platform,
-      public statusBar: StatusBar,
-      public splashScreen: SplashScreen,
-      private deeplinks: Deeplinks
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    private deeplinks: Deeplinks
   ) {
     this.initializeApp();
 
@@ -47,21 +47,22 @@ export class MyApp {
     });
   }
 
-  initDeepLinks() {
-   console.log("init deeplinks...", this.deeplinks);
-   this.deeplinks.routeWithNavController(this.nav, {
-     '/:name': LoginPage,
-   }).subscribe((match) => {
-       // match.$route - the route we matched, which is the matched entry from the arguments to route()
-       // match.$args - the args passed in the link
-       // match.$link - the full link data
-       console.log('Successfully matched route', match);
-     }, (nomatch) => {
-       // nomatch.$link - the full link data
-       console.error('Got a deeplink that didn\'t match', nomatch);
-     });
 
-}
+  initDeepLinks() {
+    console.log("init deeplinks...", this.deeplinks);
+    this.deeplinks.routeWithNavController(this.nav, {
+      '/:name': LoginPage,
+    }).subscribe((match) => {
+      // match.$route - the route we matched, which is the matched entry from the arguments to route()
+      // match.$args - the args passed in the link
+      // match.$link - the full link data
+      console.log('Successfully matched route', match);
+    }, (nomatch) => {
+      // nomatch.$link - the full link data
+      console.error('Got a deeplink that didn\'t match', nomatch);
+    });
+
+  }
 
   initFirebase() {
     firebase.initializeApp({
