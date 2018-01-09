@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { PageInterface } from '../models/page.model';
 import { Deeplinks } from '@ionic-native/deeplinks';
 import { LoginPage } from '../pages/login/login';
+import * as firebase from 'firebase';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -37,6 +39,7 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.initDeepLinks();
+      this.initFirebase();
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -59,6 +62,17 @@ export class MyApp {
      });
 
 }
+
+  initFirebase() {
+    firebase.initializeApp({
+      apiKey: "",
+      authDomain: "",
+      databaseURL: "",
+      projectId: "",
+      storageBucket: "",
+      messagingSenderId: ""
+    });
+  }
 
   openPage(page) {
     // Reset the content nav to have just this page
